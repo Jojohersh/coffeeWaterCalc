@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Coffee Water Calculator</title>
+  </head>
+  <body>
+    <div class="greeting">
+      <h1>Welcome to the Coffee Water Calculator!</h1>
+      <p>The purpose of this calculator is to make the creation of water for coffee at home a lot easier.</p>
+      <p>Through my personal journey for the perfect cup of coffee, I had found water to be my biggest bottleneck in quality. Through personal experimentation and some great articles by <a href="https://baristahustle.com/blog/diy-water-recipes-the-world-in-two-bottles/">Barista Hustle</a> on the topic, I wanted to make the access of this knowledge even easier. Instead of creating concentrates and using three different bottles of varying water volumes, I just wanted to be able to drop my minerals in and call it a day.</p>
+      <p>So long story short, this will calculate how much Epsom Salt (the Magnesium source) to add and how much Baking Soda (the bicarbonate buffer) to add to a gallon jug of distilled water.</p>
+    </div>
+    <div class="container">
+      <div>
+        <label for="epsomSalt">Which epsom salt to use</label>
+        <select class="selectBox" name="epsomSalt">
+          <option value="120.366">Magnesium Sulfate (MgSO₄)</option>
+          <option value="246.466">Magnesium Sulfate Heptahydrate (H₁₄MgO₁₁S)</option>
+        </select>
+      </div>
+      <div id="saltToHard" class="inputs">
+        <h2>Ingredients to Hardness</h2>
+        <div class="section">
+          <h3>Epsom Salt</h3>
+          <div>
+            <label for="epsomSaltWeight">Epsom Salt weight (grams)</label>
+            <input type="number" name="epsomSaltWeight" value="0">
+            <label for="epsomSaltWeight">g</label>
+          </div>
+          <div class="result">
+            Magnesium content (mg/L): <span id="mgContentDisplay">n/a</span>
+          </div>
+          <div class="result">
+          General Hardness (mg/L CaCO₃): <span id="ghDisplay">n/a</span>
+          </div>
+        </div>
+        <div class="section">
+          <h3>Baking Soda</h3>
+          <div>
+            <label for="bakingSodaWeight">Baking Soda Weight (grams)</label>
+            <input type="number" name="bakingSodaWeight" value="0">
+            <label for="bakingSodaWeight">g</label>
+          </div>
+          <span id="hco3ContentDisplay">n/a</span>
+          <span id="khDisplay">n/a</span>
+        </div>
+      </div>
+      <div id="hardToSalt" class="inputs">
+        <h2>Hardness to Ingredients</h2>
+        <div class="section">
+          <h3>Magnesium Hardness</h3>
+          <div>
+            <label for="magnesiumHardness">Magnesium content (mg/L)</label>
+            <input type="number" name="magnesiumHardness" value="0">
+            <label for="magnesiumHardness">mg/L</label>
+          </div>
+          Epsom Salt to use (g): <span id="epsomToUse">n/a</span>
+        </div>
+        <div class="section">
+          <h3>Bicarbonate Hardness</h3>
+          <div>
+            <label for="carbonateHardness">Carbonate content (mg/L)</label>
+            <input type="number" name="carbonateHardness" value="0">
+            <label for="carbonateHardness">mg/L</label>
+          </div>
+          Baking Soda to use (g): <span id="sodaToUse">n/a</span>
+        </div>
+      </div>
+    </div>
+
+
+  </body>
+</html>
