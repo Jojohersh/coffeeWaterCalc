@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Coffee Water Calculator</title>
+    <link rel="stylesheet" href="master.css">
   </head>
   <body>
     <div class="greeting">
@@ -12,9 +13,16 @@
       <p>So long story short, this will calculate how much Epsom Salt (the Magnesium source) to add and how much Baking Soda (the bicarbonate buffer) to add to a gallon jug of distilled water.</p>
     </div>
     <div class="container">
+      <div class="">
+        Calculator type:
+        <select name="calcType">
+          <option value="0">Ingredients To Hardness</option>
+          <option value="1">Hardness to Ingredients</option>
+        </select>
+      </div>
       <div>
         <label for="epsomSalt">Which epsom salt to use</label>
-        <select class="selectBox" name="epsomSalt">
+        <select name="epsomSalt">
           <option value="120.366">Magnesium Sulfate (MgSO₄)</option>
           <option value="246.466">Magnesium Sulfate Heptahydrate (H₁₄MgO₁₁S)</option>
         </select>
@@ -32,7 +40,7 @@
             Magnesium content (mg/L): <span id="mgContentDisplay">n/a</span>
           </div>
           <div class="result">
-          General Hardness (mg/L CaCO₃): <span id="ghDisplay">n/a</span>
+            General Hardness (mg/L CaCO₃): <span id="ghDisplay">n/a</span>
           </div>
         </div>
         <div class="section">
@@ -42,11 +50,17 @@
             <input type="number" name="bakingSodaWeight" value="0">
             <label for="bakingSodaWeight">g</label>
           </div>
-          <span id="hco3ContentDisplay">n/a</span>
-          <span id="khDisplay">n/a</span>
+          <div>
+            Bicarbonate content (g/L):
+            <span id="bicarbonateContentDisplay">n/a</span>
+          </div>
+          <div>
+            Carbonate hardness (mg/L CaCO₃):
+            <span id="khDisplay">n/a</span>
+          </div>
         </div>
       </div>
-      <div id="hardToSalt" class="inputs">
+      <div id="hardToSalt" class="inputs hidden">
         <h2>Hardness to Ingredients</h2>
         <div class="section">
           <h3>Magnesium Hardness</h3>
@@ -58,9 +72,9 @@
           Epsom Salt to use (g): <span id="epsomToUse">n/a</span>
         </div>
         <div class="section">
-          <h3>Bicarbonate Hardness</h3>
+          <h3>Carbonate Hardness</h3>
           <div>
-            <label for="carbonateHardness">Carbonate content (mg/L)</label>
+            <label for="carbonateHardness">Bicarbonate content (mg/L)</label>
             <input type="number" name="carbonateHardness" value="0">
             <label for="carbonateHardness">mg/L</label>
           </div>
@@ -69,6 +83,6 @@
       </div>
     </div>
 
-
+    <script src="coffeeCalc.js" charset="utf-8"></script>
   </body>
 </html>
