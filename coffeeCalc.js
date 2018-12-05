@@ -1,6 +1,7 @@
 // variables
 /*
   which epsom salt
+  presets
 
   input epsom salt Weight
   magnesium content
@@ -15,7 +16,7 @@ displays:
   ghDisplay
   carbonateContentDisplay
   khDisplay
-  epsomToUse
+  epsomToUseDisplay
   sodaToUse
 */
 // define sections
@@ -24,7 +25,7 @@ var sectionHardToSalt = document.querySelector("#hardToSalt");
 // calculator options selectors
 var calcTypeSelectBox = document.querySelector("select");
 var epsomSaltSelector = document.querySelectorAll("select")[1];
-
+var presetSelector = document.querySelector("#presets");
 //section 1 inputs
 var epsomInput = sectionSaltToHard.querySelectorAll("input")[0];
 var sodaInput = sectionSaltToHard.querySelectorAll("input")[1];
@@ -37,7 +38,7 @@ var ghDisplay = document.querySelector("#ghDisplay");
 var bicarbContentDisplay = document.querySelector("#bicarbContentDisplay");
 var khDisplay = document.querySelector("#khDisplay");
 //section 2 displays
-var epsomToUse = document.querySelector("#epsomToUse");
+var epsomToUseDisplay = document.querySelector("#epsomToUse");
 var sodaToUse = document.querySelector("#sodaToUse");
 //button
 var calcButton = document.querySelector("button");
@@ -50,6 +51,7 @@ const CaCO3ChemWeight = 100;
 
 // 0 is ingredients to hardness, 1 is vice versa
 var calcType = 0;
+
 var epsomContent = 0;
 var mgContent = 0;
 var gh = 0;
@@ -57,7 +59,11 @@ var gh = 0;
 var sodaContent = 0;
 var bicarbContent = 0;
 var kh = 0;
-
+//
+var presets = {
+  mgContent: [5.7,12.3,16.5,19.4,18.2,24,30.3,55],
+  bicarbContent: [14,48.8,48.8,48.8,61,37.5,42.7,42.5]
+};
 
 // event handlers
   /*
@@ -70,7 +76,7 @@ var kh = 0;
     mg content changed
     bicarbonate content changed
   */
-calcTypeSelectBox.addEventListener("change", function() {
+calcTypeSelectBox.addEventListener("input", function() {
   // var sections = document.querySelectorAll(".inputs");
   if (calcTypeSelectBox.selectedIndex === 0) {
     sectionSaltToHard.classList.remove("hidden");
@@ -82,39 +88,68 @@ calcTypeSelectBox.addEventListener("change", function() {
   calcType = calcTypeSelectBox.selectedIndex;
 });
 
-epsomSaltSelector.addEventListener("change", function() {
+epsomSaltSelector.addEventListener("input", function() {
   epsomChemWeight = epsomSaltSelector.value;
   //update internal data using new epsom chemical weight
   mgContent = calcEpsomToHardness(validateInput(epsomInput.value));
-  epsomToUse = calcHardnessToEpsom(mgContent);
+  epsomContent = calcHardnessToEpsom(mgContent);
   //refresh old display values with new epsom weight calculations
   updateDisplays();
 });
 
-epsomInput.addEventListener("change", function() {
+presetSelector.addEventListener("input", function() {
+  var selectedPreset = presetSelector.value;
+  console.log(selectedPreset);
+  if (selectedPreset !== "null") {
+    mgContent = validateInput(presets.mgContent[selectedPreset]);
+    epsomContent = calcHardnessToEpsom(mgContent);
+    bicarbContent = validateInput(presets.bicarbContent[selectedPreset]);
+    sodaContent = calcHardnessToSoda(bicarbContent);
+    epsomInput.value = epsomContent;
+    sodaInput.value = sodaContent;
+    mgInput.value = mgContent;
+    bicarbInput.value = bicarbContent;
+    updateDisplays();
+  } else {
+    mgContentDisplay.textContent = "";
+    ghDisplay.textContent = "";
+    bicarbContentDisplay.textContent = "";
+    khDisplay.textContent = "";
+    epsomToUseDisplay.textContent = "";
+    sodaToUse.textContent = "";
+  }
+});
+
+epsomInput.addEventListener("input", function() {
   epsomContent = validateInput(this.value);
   mgContent = calcEpsomToHardness(epsomContent);
+  epsomToUseDisplay.textContent = epsomContent;
   mgContentDisplay.textContent = "";
   ghDisplay.textContent = "";
+  presetSelector.selectedIndex = 0;
 });
 
-sodaInput.addEventListener("change", function() {
+sodaInput.addEventListener("input", function() {
   sodaContent = validateInput(this.value);
   bicarbContent = calcSodaToHardness(sodaContent);
+  sodaToUse.textContent = sodaContent;
   bicarbContentDisplay.textContent = "";
   khDisplay.textContent = "";
+  presetSelector.selectedIndex = 0;
 });
 
-mgInput.addEventListener("change", function() {
+mgInput.addEventListener("input", function() {
   mgContent = validateInput(this.value);
   epsomContent = calcHardnessToEpsom(mgContent);
-  epsomToUse.textContent = "";
+  epsomToUseDisplay.textContent = "";
+  presetSelector.selectedIndex = 0;
 });
 
-bicarbInput.addEventListener("change", function() {
+bicarbInput.addEventListener("input", function() {
   bicarbContent = validateInput(this.value);
   sodaContent = calcHardnessToSoda(bicarbContent);
   sodaToUse.textContent = "";
+  presetSelector.selectedIndex = 0;
 });
 
 calcButton.addEventListener("click", function() {
@@ -195,17 +230,21 @@ updateDisplays(calcType)
       returns true if function completes
 */
 function updateDisplays() {
+  //section 1 items in order
+  epsomInput.value = epsomContent;
   mgContentDisplay.textContent = mgContent;
   gh = mgContent * CaCO3ChemWeight / mgChemWeight;
   gh = Number(Number.parseFloat(gh).toPrecision(3));
   ghDisplay.textContent = gh;
+  sodaInput.value = sodaContent;
   bicarbContentDisplay.textContent = bicarbContent;
   kh = bicarbContent * CaCO3ChemWeight / bicarbChemWeight;
   kh = Number(Number.parseFloat(kh).toPrecision(3));
   khDisplay.textContent = kh;
+  //section 2 items in order
   mgInput.value = mgContent;
   bicarbInput.value = bicarbContent;
-  epsomToUse.textContent = epsomContent;
+  epsomToUseDisplay.textContent = epsomContent;
   sodaToUse.textContent = sodaContent;
   return true;
 }

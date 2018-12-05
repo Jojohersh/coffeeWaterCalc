@@ -9,7 +9,7 @@
     <div class="greeting">
       <h1>Welcome to the Coffee Water Calculator!</h1>
       <p>The purpose of this calculator is to make the creation of water for coffee at home a lot easier.</p>
-      <p>Through my personal journey for the perfect cup of coffee, I had found water to be my biggest bottleneck in quality. Through personal experimentation and some great articles by <a href="https://baristahustle.com/blog/diy-water-recipes-the-world-in-two-bottles/">Barista Hustle</a> on the topic, I wanted to make the access of this knowledge even easier. Instead of creating concentrates and using three different bottles of varying water volumes, I just wanted to be able to drop my minerals in and call it a day.</p>
+      <p>Through my personal journey for the perfect cup of coffee, I had found water to be my biggest bottleneck in quality. Through personal experimentation and some great articles by <a href="https://baristahustle.com/blog/diy-water-recipes-the-world-in-two-bottles/">Barista Hustle</a> on the topic, I wanted to make the access of this knowledge even easier. Instead of creating concentrates and using three different bottles of varying water volumes, I just wanted to be able to drop my minerals in and call it a day. You can enter whatever values you please to calculate, or select a preset below, taken from the previously mentioned Barista Hustle article.</p>
       <p>So long story short, this will calculate how much Epsom Salt (the Magnesium source) to add and how much Baking Soda (the bicarbonate buffer) to add to a gallon jug of distilled water.</p>
     </div>
     <div class="container">
@@ -23,8 +23,22 @@
       <div>
         <label for="epsomSalt">Which epsom salt to use</label>
         <select name="epsomSalt">
-          <option value="120.366">Magnesium Sulfate (MgSO₄)</option>
           <option value="246.466">Magnesium Sulfate Heptahydrate (H₁₄MgO₁₁S)</option>
+          <option value="120.366">Magnesium Sulfate (MgSO₄)</option>
+        </select>
+      </div>
+      <div>
+        <label for="presets">Water recipe presets</label>
+        <select id="presets" name="presets">
+          <option value="null">none</option>
+          <option value="0">Melbourne</option>
+          <option value="1">WOC Budapest</option>
+          <option value="2">SCA</option>
+          <option value="3">Barista Hustle</option>
+          <option value="4">Scott Rao</option>
+          <option value="5">Chris Hendon</option>
+          <option value="6">Pretty Hard</option>
+          <option value="7">Hard AF</option>
         </select>
       </div>
       <div id="saltToHard" class="inputs">
