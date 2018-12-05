@@ -13,7 +13,7 @@
       <p>So long story short, this will calculate how much Epsom Salt (the Magnesium source) to add and how much Baking Soda (the bicarbonate buffer) to add to a gallon jug of distilled water.</p>
     </div>
     <div class="container">
-      <div class="">
+      <div>
         Calculator type:
         <select name="calcType">
           <option value="0">Ingredients To Hardness</option>
@@ -33,30 +33,30 @@
           <h3>Epsom Salt</h3>
           <div>
             <label for="epsomSaltWeight">Epsom Salt weight (grams)</label>
-            <input type="number" name="epsomSaltWeight" value="0">
+            <input type="text" name="epsomSaltWeight" value="0">
             <label for="epsomSaltWeight">g</label>
           </div>
           <div class="result">
-            Magnesium content (mg/L): <span id="mgContentDisplay">n/a</span>
+            Magnesium content (mg/L): <span id="mgContentDisplay"></span>
           </div>
           <div class="result">
-            General Hardness (mg/L CaCO₃): <span id="ghDisplay">n/a</span>
+            General Hardness (mg/L CaCO₃): <span id="ghDisplay"></span>
           </div>
         </div>
         <div class="section">
           <h3>Baking Soda</h3>
           <div>
             <label for="bakingSodaWeight">Baking Soda Weight (grams)</label>
-            <input type="number" name="bakingSodaWeight" value="0">
+            <input type="text" name="bakingSodaWeight" value="0">
             <label for="bakingSodaWeight">g</label>
           </div>
           <div>
             Bicarbonate content (g/L):
-            <span id="bicarbonateContentDisplay">n/a</span>
+            <span id="bicarbContentDisplay"></span>
           </div>
           <div>
             Carbonate hardness (mg/L CaCO₃):
-            <span id="khDisplay">n/a</span>
+            <span id="khDisplay"></span>
           </div>
         </div>
       </div>
@@ -66,20 +66,23 @@
           <h3>Magnesium Hardness</h3>
           <div>
             <label for="magnesiumHardness">Magnesium content (mg/L)</label>
-            <input type="number" name="magnesiumHardness" value="0">
+            <input type="text" name="magnesiumHardness" value="0">
             <label for="magnesiumHardness">mg/L</label>
           </div>
-          Epsom Salt to use (g): <span id="epsomToUse">n/a</span>
+          Epsom Salt to use (g): <span id="epsomToUse"></span>
         </div>
         <div class="section">
           <h3>Carbonate Hardness</h3>
           <div>
             <label for="carbonateHardness">Bicarbonate content (mg/L)</label>
-            <input type="number" name="carbonateHardness" value="0">
+            <input type="text" name="carbonateHardness" value="0">
             <label for="carbonateHardness">mg/L</label>
           </div>
           Baking Soda to use (g): <span id="sodaToUse">n/a</span>
         </div>
+      </div>
+      <div>
+        <button type="button" name="calc">Calculate</button>
       </div>
     </div>
 
