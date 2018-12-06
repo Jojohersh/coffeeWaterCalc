@@ -41,7 +41,11 @@ var khDisplay = document.querySelector("#khDisplay");
 var epsomToUseDisplay = document.querySelector("#epsomToUse");
 var sodaToUse = document.querySelector("#sodaToUse");
 //button
-var calcButton = document.querySelector("button");
+var calcButton = document.querySelector("#calc");
+
+var aboutBtn = document.querySelector(".menuOption");
+var closeAbout = document.querySelector("#closeAbout");
+var aboutMessage = document.querySelector(".about");
 //variables
 const mgChemWeight = 24.305;
 const bicarbChemWeight = 61.017;
@@ -91,8 +95,12 @@ calcTypeSelectBox.addEventListener("input", function() {
 epsomSaltSelector.addEventListener("input", function() {
   epsomChemWeight = epsomSaltSelector.value;
   //update internal data using new epsom chemical weight
-  mgContent = calcEpsomToHardness(validateInput(epsomInput.value));
-  epsomContent = calcHardnessToEpsom(mgContent);
+  if (calcType === 0) {
+    mgContent = calcEpsomToHardness(validateInput(epsomInput.value));
+  } else if (calcType === 1) {
+    epsomContent = calcHardnessToEpsom(validateInput(mgInput.value));
+  }
+  // epsomContent = calcHardnessToEpsom(mgContent);
   //refresh old display values with new epsom weight calculations
   updateDisplays();
 });
@@ -121,7 +129,7 @@ presetSelector.addEventListener("input", function() {
 });
 
 epsomInput.addEventListener("input", function() {
-  epsomContent = validateInput(this.value);
+  epsomContent = validateInput(this.value).toFixed(2);
   mgContent = calcEpsomToHardness(epsomContent);
   epsomToUseDisplay.textContent = epsomContent;
   mgContentDisplay.textContent = "";
@@ -130,7 +138,7 @@ epsomInput.addEventListener("input", function() {
 });
 
 sodaInput.addEventListener("input", function() {
-  sodaContent = validateInput(this.value);
+  sodaContent = validateInput(this.value).toFixed(2);
   bicarbContent = calcSodaToHardness(sodaContent);
   sodaToUse.textContent = sodaContent;
   bicarbContentDisplay.textContent = "";
@@ -139,14 +147,16 @@ sodaInput.addEventListener("input", function() {
 });
 
 mgInput.addEventListener("input", function() {
-  mgContent = validateInput(this.value);
+  mgContent = validateInput(this.value).toFixed(1);
+  console.log(mgContent);
+  // mgContentDisplay.value = mgContent;
   epsomContent = calcHardnessToEpsom(mgContent);
   epsomToUseDisplay.textContent = "";
   presetSelector.selectedIndex = 0;
 });
 
 bicarbInput.addEventListener("input", function() {
-  bicarbContent = validateInput(this.value);
+  bicarbContent = validateInput(this.value).toFixed(1);
   sodaContent = calcHardnessToSoda(bicarbContent);
   sodaToUse.textContent = "";
   presetSelector.selectedIndex = 0;
@@ -156,6 +166,13 @@ calcButton.addEventListener("click", function() {
   updateDisplays();
 });
 
+aboutBtn.addEventListener("click", function() {
+  aboutMessage.classList.remove("hidden");
+});
+
+closeAbout.addEventListener("click", function(){
+  aboutMessage.classList.add("hidden");
+});
 // functions
 /*
   calculate epsomToHardness
@@ -178,7 +195,8 @@ function calcEpsomToHardness(epsomSaltWeight) {
   const unitConvertFactor = 1000 / 3.785;
   var epsomToMgFactor = mgChemWeight / epsomChemWeight;
   var mgContent = epsomSaltWeight * unitConvertFactor * epsomToMgFactor;
-  mgContent = Number(Number.parseFloat(mgContent).toPrecision(3));
+  // goes to the tenth of a mg/L
+  mgContent = mgContent.toFixed(1);
   return mgContent;
 }
 /*
@@ -191,7 +209,8 @@ function calcHardnessToEpsom(mgContent) {
   const unitConvertFactor = 3.785 / 1000;
   const mgToEpsomFactor = epsomChemWeight / mgChemWeight;
   var epsomContent = mgContent * unitConvertFactor * mgToEpsomFactor;
-  epsomContent = Number(Number.parseFloat(epsomContent).toPrecision(3));
+  // goes to the hundredth of a gram
+  epsomContent = epsomContent.toFixed(2);
   return epsomContent;
 }
 /*
@@ -205,7 +224,8 @@ function calcSodaToHardness(sodaWeight) {
   const unitConvertFactor = 1000 / 3.785;
   const sodaToBicarbFactor = bicarbChemWeight / sodaChemWeight;
   var bicarbContent = sodaWeight * unitConvertFactor * sodaToBicarbFactor;
-  bicarbContent = Number(Number.parseFloat(bicarbContent).toPrecision(3));
+  // goes to the tenth of a mg/L
+  bicarbContent = bicarbContent.toFixed(1);
   return bicarbContent;
 }
 /*
@@ -219,7 +239,8 @@ function calcHardnessToSoda(bicarbContent) {
   const unitConvertFactor = 3.785 / 1000;
   const bicarbToSodaFactor = sodaChemWeight / bicarbChemWeight;
   var sodaContent = bicarbContent * unitConvertFactor * bicarbToSodaFactor;
-  sodaContent = Number(Number.parseFloat(sodaContent).toPrecision(3));
+  // goes to the hundredth of a gram
+  sodaContent = sodaContent.toFixed(2);
   return sodaContent;
 }
 /*

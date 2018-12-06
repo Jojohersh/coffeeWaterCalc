@@ -3,18 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Coffee Water Calculator</title>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Muli" rel="stylesheet">
     <link rel="stylesheet" href="master.css">
   </head>
   <body>
-    <div class="greeting">
+    <div class="header">
       <h1>Welcome to the Coffee Water Calculator!</h1>
+      <div class="menuOption">
+        About
+      </div>
+    </div>
+    <div class="about hidden">
       <p>The purpose of this calculator is to make the creation of water for coffee at home a lot easier.</p>
       <p>Through my personal journey for the perfect cup of coffee, I had found water to be my biggest bottleneck in quality. Through personal experimentation and some great articles by <a href="https://baristahustle.com/blog/diy-water-recipes-the-world-in-two-bottles/">Barista Hustle</a> on the topic, I wanted to make the access of this knowledge even easier. Instead of creating concentrates and using three different bottles of varying water volumes, I just wanted to be able to drop my minerals in and call it a day. You can enter whatever values you please to calculate, or select a preset below, taken from the previously mentioned Barista Hustle article.</p>
       <p>So long story short, this will calculate how much Epsom Salt (the Magnesium source) to add and how much Baking Soda (the bicarbonate buffer) to add to a gallon jug of distilled water.</p>
+      <button id="closeAbout"type="button" name="closeAbout">Close</button>
     </div>
     <div class="container">
       <div>
-        Calculator type:
+        <h2>Calculator Options</h2>
+        <label for="calcType">Calculator type:</label>
         <select name="calcType">
           <option value="0">Ingredients To Hardness</option>
           <option value="1">Hardness to Ingredients</option>
@@ -92,11 +100,11 @@
             <input type="text" name="carbonateHardness" value="0">
             <label for="carbonateHardness">mg/L</label>
           </div>
-          Baking Soda to use (g): <span id="sodaToUse">n/a</span>
+          Baking Soda to use (g): <span id="sodaToUse"></span>
         </div>
       </div>
       <div>
-        <button type="button" name="calc">Calculate</button>
+        <button id="calc" type="button" name="calc">Calculate</button>
       </div>
     </div>
 
