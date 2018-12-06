@@ -1,3 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Muli", sans-serif;
+  height: 100vh;
+  background: linear-gradient(135deg,rgba(55,55,55,1),rgba(35,35,35,1));
+  color: white;
+}
 .hidden {
   display: none;
+}
+/* @media screen and (max-width:400px) {
+
+}
+@media screen and (max-width: 1200) {
+  .container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 1.5em;
+  }
+} */
+.about {
+  order: 3;
+}
+
+p {
+  margin: 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: #44aaff;
+}
+a:hover,.menuOption:hover {
+  color: white;
+  font-weight: bold;
+}
+
+.menuOption {
+  margin: 15px;
+  font-size: 1.2em;
+  letter-spacing: normal;
+}
+
+.header {
+  padding: 15px 0;
+  background-color: #44aaff;
+  color: white;
+  text-align: center;
+  font-size: 1.4rem;
+  font-family: "Lobster", "Muli", sans-serif;
+  letter-spacing: 0.4rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 33% 1fr 33%;
+  grid-gap: 1em 1em;
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 1.5rem;
+}
+
+.calcOptions {
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  font-family: "Lobster", "Muli", sans-serif;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+select, input, button {
+  font-size: inherit;
+  background-color: rgba(0,0,0,0);
+  width: 100%;
+  color: white;
+  border: none;
+  border-bottom: 2px solid white;
+  transition: all 0.3s;
+}
+select:focus,input:focus,select:hover,input:hover {
+  font-size: 1.1em;
+  background-color: #44aaff;
+}
+
+.section {
+  margin: 5vh 0;
+}
+
+.labeledInput {
+  margin: 10px 0;
+}
+label {
+  font-size: 0.7em;
+}
+
+input {
+  text-align: center;
+}
+
+button {
+  margin: 1em 0;
+  padding: 15px 0;
+  border: 2px solid white;
+  border-radius: 5px;
+  transition: all 0.7s;
+}
+button:hover {
+  background-color: #44aaff;
+  transition: ();
 }
